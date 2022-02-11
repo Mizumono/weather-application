@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import styles from './App.module.scss';
 import axios from 'axios';
+import Card from './components/Card/Card';
 
 const App = () => {
   const [latitude, setLatitude] = useState();
@@ -30,13 +31,23 @@ const App = () => {
   }, [latitude, longitude])
 
   return (
-    <div className={styles.app}>
-      <p>Weather Application</p>
-      <p>Latitude: {latitude}</p>
-      <p>Longitude: {longitude}</p>
-      <p>geolocationStatus: {geolocationStatus}</p>
-      <p>Name: {currentWeather && currentWeather.name}</p>
-      <p>Temp: {currentWeather && currentWeather.main.temp}</p>
+    <div className={styles.container}>
+      <div className={styles.row}>
+        <div className={styles.col}>
+          <Card>
+            <Card.Header>Local Weather Widget</Card.Header>
+            <Card.Body>Body</Card.Body>
+            <Card.Footer>Footer</Card.Footer>
+          </Card>
+        </div>
+        <div className={styles.col}>
+          <Card>
+            <Card.Header>Global Weather Widget</Card.Header>
+            <Card.Body>Body</Card.Body>
+            <Card.Footer>Footer</Card.Footer>
+          </Card>
+        </div>
+      </div>
     </div>
   );
 }
