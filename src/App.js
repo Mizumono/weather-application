@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import styles from './App.module.scss';
-import Card from './components/Card/Card';
 import LocalWeather from './widgets/LocalWeather/LocalWeather';
+import WorldWeather from './widgets/WorldWeather/WorldWeather';
 
 const App = () => {
   const [latitude, setLatitude] = useState();
@@ -28,11 +28,10 @@ const App = () => {
           />
         </div>
         <div className={styles.col}>
-          <Card>
-            <Card.Header>Global Weather Widget</Card.Header>
-            <Card.Body>Body</Card.Body>
-            <Card.Footer>Footer</Card.Footer>
-          </Card>
+          <WorldWeather
+            latitude={latitude}
+            longitude={longitude}
+          />
         </div>
       </div>
     </div>
