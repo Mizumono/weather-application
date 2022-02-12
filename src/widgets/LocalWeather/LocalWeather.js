@@ -15,7 +15,7 @@ const LocalWeather = ({ latitude, longitude }) => {
     latitude && longitude && axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude={part}&appid={API key}&units=metric`)
     .then(({data}) => {
       setLocalWeather(data);
-      setLocalWeather('Success!')
+      setLocalWeatherStatus('Success!')
     })
     .catch(error => {
       setLocalWeatherStatus(error);
