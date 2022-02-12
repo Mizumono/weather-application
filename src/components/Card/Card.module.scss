@@ -12,11 +12,15 @@
 
 .header,
 .body {
-  border-bottom: 1px solid $gray;
+  border-bottom: 1px solid $gray-80;
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 8px;
   padding-bottom: 8px;
+}
+
+.header {
+  flex-direction: column;
 }
 
 .footer {
