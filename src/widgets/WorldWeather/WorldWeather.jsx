@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import Card from '../../components/Card/Card';
 
 const WorldWeather = ({ cities }) => {
-  const requestArray = cities.map(city => `https://api.openweathermap.org/data/2.5/weather?id=${city}&appid={API key}&units=metric`)
+  const requestArray = cities.map(city => `https://api.openweathermap.org/data/2.5/weather?id=${city}&appid=${process.env.REACT_APP_OPEN_WEATHER_MAP_API_KEY}&units=metric`)
   const [worldWeather, setWorldWeather] = useState();
   const [worldWeatherStatus, setWorldWeatherStatus] = useState();
 

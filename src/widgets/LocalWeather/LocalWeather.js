@@ -12,7 +12,7 @@ const LocalWeather = ({ latitude, longitude }) => {
   const hourlyForecast = localWeather && localWeather.hourly.slice(1, 13);
 
   useEffect(() => {
-    latitude && longitude && axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude={part}&appid={API key}&units=metric`)
+    latitude && longitude && axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude={part}&appid=${process.env.REACT_APP_OPEN_WEATHER_MAP_API_KEY}&units=metric`)
     .then(({data}) => {
       setLocalWeather(data);
       setLocalWeatherStatus('Success!')
@@ -26,7 +26,7 @@ const LocalWeather = ({ latitude, longitude }) => {
     localWeather ? (
       <Card>
         <Card.Header>
-          <h3 className={styles.city}>{localWeather.timezone}</h3>
+          <h2 className={styles.city}>{localWeather.timezone}</h2>
           <p className={styles.currentTemperature}>{Math.round(localWeather.current.temp)}&#176;</p>
         </Card.Header>
         <Card.Body>
@@ -34,7 +34,7 @@ const LocalWeather = ({ latitude, longitude }) => {
             return (
               <div className={styles.daily} key={index}>
                 <p>{moment(item.dt * 1000).format('dddd')}</p>
-                <img className={styles.icon} src={`http://openweathermap.org/img/wn/${item.weather[0].icon}.png`} alt={item.weather[0].description} />
+                <img className={styles.icon} src={`http://openweathermap.org/img/wn/${item.weather[0].icon}.png`} alt={item.weather[0].main} />
                 <p>{Math.round(item.temp.max)}&#176;/{Math.round(item.temp.min)}&#176;</p>
               </div>
             )
@@ -45,7 +45,7 @@ const LocalWeather = ({ latitude, longitude }) => {
             return (
               <div className={styles.hourly} key={index}>
                 <p>{moment(item.dt * 1000).format('k')}</p>
-                <img className={styles.icon} src={`http://openweathermap.org/img/wn/${item.weather[0].icon}.png`} alt={item.weather[0].description} />
+                <img className={styles.icon} src={`http://openweathermap.org/img/wn/${item.weather[0].icon}.png`} alt={item.weather[0].main} />
                 <p>{Math.round(item.temp)}&#176;</p>
               </div>
             )
