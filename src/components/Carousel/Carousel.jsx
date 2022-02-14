@@ -18,11 +18,9 @@ const Carousel = ({ children }) => {
 
   return (
     <div className={style.carousel}>
-      <div className={style.inner}>
-        {React.Children.map(children, (child, index) => {
-          return React.cloneElement(child, { activeIndex: activeIndex === index });
-        })}
-      </div>
+      {React.Children.map(children, (child, index) => {
+        return React.cloneElement(child, { activeIndex: activeIndex === index });
+      })}
     </div>
   );
 };
