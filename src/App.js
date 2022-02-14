@@ -28,10 +28,7 @@ const App = () => {
           />
         </div>
         <div className={styles.col}>
-          <WorldWeather
-            latitude={latitude}
-            longitude={longitude}
-          />
+          <WorldWeather cities={[3060972, 683506, 703448, 3196359, 4095475, 3186886]}/>
         </div>
       </div>
     </div>
