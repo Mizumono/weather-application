@@ -1,12 +1,18 @@
 .carousel {
   height: 100%;
+  overflow: hidden;
+}
+
+.inner {
+  height: 100%;
+  transition: transform 0.3s;
+  white-space: nowrap;
 }
 
 .carouselItem {
-  display: none;
+  align-items: center;
+  display: inline-flex;
   height: 100%;
-}
-
-.active {
-  display: block;
+  justify-content: center;
+  width: 100%;
 }
