@@ -4,6 +4,8 @@ import styles from './WorldWeather.module.scss';
 import Carousel from '../../components/Carousel/Carousel';
 import PropTypes from 'prop-types';
 import Card from '../../components/Card/Card';
+import ToggleSwitch from '../../components/ToggleSwitch/ToggleSwitch';
+import tempConverter from '../../utils/helpers/tempConverter';
 
 const WorldWeather = ({ cities }) => {
   const requestArray = cities.map(
@@ -12,6 +14,8 @@ const WorldWeather = ({ cities }) => {
   );
   const [worldWeather, setWorldWeather] = useState();
   const [worldWeatherStatus, setWorldWeatherStatus] = useState();
+  const [isChecked, setIsChecked] = useState(false);
+  const unit = isChecked ? 'imperial' : 'metric';
 
   useEffect(() => {
     cities &&
@@ -26,8 +30,20 @@ const WorldWeather = ({ cities }) => {
         });
   }, [cities]);
 
+  const onUnitChange = (checked) => {
+    setIsChecked(checked);
+  };
+
   return worldWeather ? (
     <Card>
+      <div className={styles.toggleSwitchWrapper}>
+        <ToggleSwitch
+          id="unit2"
+          checked={isChecked}
+          onChange={onUnitChange}
+          optionLabels={['°F', '°C']}
+        />
+      </div>
       <Carousel>
         {worldWeather.map((item, index) => {
           return (
@@ -36,9 +52,12 @@ const WorldWeather = ({ cities }) => {
                 <div className={styles.content}>
                   <h2 className={styles.city}>{item.data.name}</h2>
                   <p className={styles.currentTemperature}>
-                    <span>{Math.round(item.data.main.temp_max)}&#176;</span> /{' '}
+                    <span>
+                      {tempConverter(item.data.main.temp_max, unit)}&#176;
+                    </span>{' '}
+                    /{' '}
                     <span className={styles.tempMin}>
-                      {Math.round(item.data.main.temp_min)}&#176;
+                      {tempConverter(item.data.main.temp_min, unit)}&#176;
                     </span>
                   </p>
                 </div>
