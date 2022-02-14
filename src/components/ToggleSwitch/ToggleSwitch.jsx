@@ -1,31 +1,30 @@
-import PropTypes from "prop-types";
-import styles from "./ToggleSwitch.module.scss";
+import PropTypes from 'prop-types';
+import styles from './ToggleSwitch.module.scss';
 
-const ToggleSwitch = ({
-  id,
-  checked,
-  onChange,
-  optionLabels,
-}) => {
+const ToggleSwitch = ({ id, checked, onChange, optionLabels }) => {
   return (
     <div className={styles.toggleSwitch}>
-      <input checked={checked} className={styles.checkbox} id={id} onChange={(event) => onChange(event.target.checked)} type="checkbox" />
+      <input
+        checked={checked}
+        className={styles.checkbox}
+        id={id}
+        onChange={(event) => onChange(event.target.checked)}
+        type="checkbox"
+      />
       <label className={styles.label} htmlFor={id}>
         <span
           className={styles.inner}
           data-no={optionLabels[1]}
           data-yes={optionLabels[0]}
         />
-        <span
-          className={styles.switch}
-        />
+        <span className={styles.switch} />
       </label>
     </div>
   );
 };
 
 ToggleSwitch.defaultProps = {
-  optionLabels: ["Yes", "No"]
+  optionLabels: ['Yes', 'No'],
 };
 
 ToggleSwitch.propTypes = {

@@ -20,7 +20,10 @@ const Carousel = ({ children }) => {
 
   return (
     <div className={style.carousel}>
-      <div className={style.inner} style={{ transform: `translateX(-${activeIndex * 100}%)` }}>
+      <div
+        className={style.inner}
+        style={{ transform: `translateX(-${activeIndex * 100}%)` }}
+      >
         {React.Children.map(children, (child) => {
           return React.cloneElement(child);
         })}
@@ -29,6 +32,8 @@ const Carousel = ({ children }) => {
   );
 };
 
-Carousel.Item = ({ children }) => <div className={style.carouselItem}>{children}</div>;
+Carousel.Item = ({ children }) => (
+  <div className={style.carouselItem}>{children}</div>
+);
 
 export default Carousel;
