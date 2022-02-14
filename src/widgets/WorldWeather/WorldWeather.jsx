@@ -27,11 +27,11 @@ const WorldWeather = ({ cities }) => {
   }, [cities]);
 
   return worldWeather ? (
-    <Carousel>
-      {worldWeather.map((item, index) => {
-        return (
-          <Carousel.Item key={index}>
-            <Card>
+    <Card>
+      <Carousel>
+        {worldWeather.map((item, index) => {
+          return (
+            <Carousel.Item key={index}>
               <Card.Body>
                 <div className={styles.content}>
                   <h2 className={styles.city}>{item.data.name}</h2>
@@ -43,11 +43,11 @@ const WorldWeather = ({ cities }) => {
                   </p>
                 </div>
               </Card.Body>
-            </Card>
-          </Carousel.Item>
-        );
-      })}
-    </Carousel>
+            </Carousel.Item>
+          );
+        })}
+      </Carousel>
+    </Card>
   ) : (
     <p>Loading...</p>
   );
