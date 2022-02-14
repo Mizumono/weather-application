@@ -1,0 +1,22 @@
+@import '../../utils/styles/variables';
+
+.content {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+.city {
+  font-size: 1.2em;
+}
+
+.currentTemperature {
+  font-size: 3.6em;
+  font-weight: bold;
+}
+
+.tempMin {
+  color: $gray-80;
+}

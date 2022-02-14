@@ -12,21 +12,27 @@ const Carousel = ({ children }) => {
     return () => interval && clearInterval(interval);
   });
 
-  const updateIndex = newIndex => {
-    newIndex >= React.Children.count(children) ? setActiveIndex(0) : setActiveIndex(newIndex);
+  const updateIndex = (newIndex) => {
+    newIndex >= React.Children.count(children)
+      ? setActiveIndex(0)
+      : setActiveIndex(newIndex);
   };
 
   return (
     <div className={style.carousel}>
-      <div className={style.inner}>
-        {React.Children.map(children, (child, index) => {
-          return React.cloneElement(child, { activeIndex: activeIndex === index });
-        })}
-      </div>
+      {React.Children.map(children, (child, index) => {
+        return React.cloneElement(child, {
+          activeIndex: activeIndex === index,
+        });
+      })}
     </div>
   );
 };
 
-Carousel.Item = ({ children, activeIndex }) => <div className={`${style.carouselItem} ${activeIndex && style.active}`}>{children}</div>;
+Carousel.Item = ({ children, activeIndex }) => (
+  <div className={`${style.carouselItem} ${activeIndex && style.active}`}>
+    {children}
+  </div>
+);
 
 export default Carousel;

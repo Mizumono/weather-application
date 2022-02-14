@@ -1,11 +1,7 @@
 import styles from './Card.module.scss';
 
 const Card = ({ children }) => {
-  return (
-    <div className={styles.card}>
-      {children}
-    </div>
-  )
+  return <div className={styles.card}>{children}</div>;
 };
 
 Card.Header = ({ children }) => <div className={styles.header}>{children}</div>;
