@@ -1,15 +1,19 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import moment from 'moment';
+import PropTypes from 'prop-types';
 import styles from './LocalWeather.module.scss';
 import Card from '../../components/Card/Card';
-import PropTypes from 'prop-types';
+import ToggleSwitch from '../../components/ToggleSwitch/ToggleSwitch';
+import tempConverter from '../../utils/helpers/tempConverter';
 
 const LocalWeather = ({ latitude, longitude }) => {
   const [localWeather, setLocalWeather] = useState();
   const [localWeatherStatus, setLocalWeatherStatus] = useState();
   const dailyForecast = localWeather && localWeather.daily.slice(1, -1);
   const hourlyForecast = localWeather && localWeather.hourly.slice(1, 13);
+  const [isChecked, setIsChecked] = useState(false);
+  const unit = isChecked ? 'imperial' : 'metric';
 
   useEffect(() => {
     latitude &&
@@ -27,13 +31,25 @@ const LocalWeather = ({ latitude, longitude }) => {
         });
   }, [latitude, longitude]);
 
+  const onUnitChange = (checked) => {
+    setIsChecked(checked);
+  };
+
   return localWeather ? (
     <Card>
       <Card.Header>
-        <h2 className={styles.city}>{localWeather.timezone}</h2>
-        <p className={styles.currentTemperature}>
-          {Math.round(localWeather.current.temp)}&#176;
-        </p>
+        <div>
+          <h2 className={styles.city}>{localWeather.timezone}</h2>
+          <p className={styles.currentTemperature}>
+            {tempConverter(localWeather.current.temp, unit)}&#176;
+          </p>
+        </div>
+        <ToggleSwitch
+          id="unit"
+          checked={isChecked}
+          onChange={onUnitChange}
+          optionLabels={['°F', '°C']}
+        />
       </Card.Header>
       <Card.Body>
         {dailyForecast.map((item, index) => {
@@ -46,8 +62,8 @@ const LocalWeather = ({ latitude, longitude }) => {
                 alt={item.weather[0].main}
               />
               <p>
-                {Math.round(item.temp.max)}&#176;/{Math.round(item.temp.min)}
-                &#176;
+                {tempConverter(item.temp.max, unit)}&#176;/
+                {tempConverter(item.temp.min, unit)}&#176;
               </p>
             </div>
           );
@@ -63,7 +79,7 @@ const LocalWeather = ({ latitude, longitude }) => {
                 src={`http://openweathermap.org/img/wn/${item.weather[0].icon}.png`}
                 alt={item.weather[0].main}
               />
-              <p>{Math.round(item.temp)}&#176;</p>
+              <p>{tempConverter(item.temp, unit)}&#176;</p>
             </div>
           );
         })}
