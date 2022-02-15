@@ -12,8 +12,10 @@ const App = () => {
     navigator.geolocation
       ? navigator.geolocation.getCurrentPosition(
           (position) => {
-            setLatitude(position.coords.latitude);
-            setLongitude(position.coords.longitude);
+            const { latitude, longitude } = position.coords;
+
+            setLatitude(latitude);
+            setLongitude(longitude);
             setGeolocationStatus('Success!');
           },
           (error) => setGeolocationStatus(error.message)
