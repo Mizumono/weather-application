@@ -7,6 +7,7 @@ const App = () => {
   const [latitude, setLatitude] = useState();
   const [longitude, setLongitude] = useState();
   const [geolocationStatus, setGeolocationStatus] = useState();
+  const idOfCities = [3060972, 683506, 703448, 3196359, 4095475, 3186886];
 
   useEffect(() => {
     navigator.geolocation
@@ -31,7 +32,7 @@ const App = () => {
         </div>
         <div className={styles.col}>
           <WorldWeather
-            cities={[3060972, 683506, 703448, 3196359, 4095475, 3186886]}
+            cities={idOfCities}
           />
         </div>
       </div>
