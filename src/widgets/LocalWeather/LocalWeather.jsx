@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 import moment from 'moment';
-import PropTypes from 'prop-types';
 import styles from './LocalWeather.module.scss';
 import Card from '../../components/Card/Card';
 import ToggleSwitch from '../../components/ToggleSwitch/ToggleSwitch';
